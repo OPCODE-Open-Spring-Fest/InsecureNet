@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #2874f0;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    width: 300px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+.product-image {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.product-details {
+    padding: 10px;
+}
+
+.product-details h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.product-details p {
+    margin: 5px 0;
+}
+
+.product-details strong {
+    font-weight: bold;
+}
+
+.company {
+    color: #666;
+}
+
+.price {
+    color: #333;
+    font-weight: bold;
+}
+
+.featured, .shipping {
+    color: #2874f0;
+}
+
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#search{
+    width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #007bff;
+}
