@@ -7,13 +7,13 @@ router.use(bodyParser.json());
 const path = require('path')
 router.use(express.static( path.join(__dirname,"../public")))
 const db = require(path.join(__dirname,"../db/dbConnect"));
-const session = require('express-session');
+// const session = require('express-session');
 require('dotenv').config();
-router.use(session({
-    secret: process.env.secret,
-    resave: false,
-    saveUninitialized: false
-}));
+// router.use(session({
+//     secret: process.env.secret,
+//     resave: false,
+//     saveUninitialized: false
+// }));
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -24,25 +24,25 @@ let transporter = nodemailer.createTransport({
 
 
 router.get('/login', (req, res) =>{
-    if (req.session.isLoggedIn) {
-        res.redirect("/")
-        return;
-    }
+    // if (req.session.isLoggedIn) {
+    //     res.redirect("/")
+    //     return;
+    // }
     res.render('login');
 })
 
 router.post('/login', (req, res) => {
-    if (req.session.isLoggedIn) {
-        res.redirect("/")
-        return;
-    }
+    // if (req.session.isLoggedIn) {
+    //     res.redirect("/")
+    //     return;
+    // }
     db.query('SELECT * FROM users WHERE email = \''+req.body.email+'\'  AND password = \''+req.body.password+'\'', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
             return;
         }
         if (results.length > 0) {
-            req.session.isLoggedIn = true;
+            // req.session.isLoggedIn = true;
             res.redirect('/');
         }
         else{
@@ -52,10 +52,10 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/register', (req,res) => {
-    if (req.session.isLoggedIn){
-        res.redirect("/");
-        return;
-    }
+    // if (req.session.isLoggedIn){
+    //     res.redirect("/");
+    //     return;
+    // }
     res.render('register');
 })
 
