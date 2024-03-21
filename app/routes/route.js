@@ -7,13 +7,13 @@ router.use(bodyParser.json());
 const path = require('path')
 router.use(express.static( path.join(__dirname,"../public")))
 const db = require(path.join(__dirname,"../db/dbConnect"));
-// const session = require('express-session');
+const session = require('express-session');
 require('dotenv').config();
-// router.use(session({
-//     secret: process.env.secret,
-//     resave: false,
-//     saveUninitialized: false
-// }));
+router.use(session({
+    secret: process.env.secret,
+    resave: false,
+    saveUninitialized: false
+}));
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -23,50 +23,84 @@ let transporter = nodemailer.createTransport({
 });
 
 
+router.get('/', (req,res)  => {
+    if (!req.session.isLoggedIn) {
+        res.redirect('/login');
+        return;
+    }
+    db.query('SELECT * FROM products', (error, results, fields) => {
+        if (error) {
+            console.error('Error executing query: ' + error);
+            return;
+        }
+        res.render('products',{products:results, isLoggedIn:req.session.isLoggedIn});
+    });
+})
+
+router.post('/search', (req, res) => {
+    if (req.session.isLoggedIn) {
+        res.redirect('/login');
+        return;
+    }
+    db.query('SELECT * FROM products WHERE name LIKE \'\%'+req.body.name+'\%\';', (error, results, fields) => {
+        if (error) {
+            console.error('Error executing query: ' + error);
+            return;
+        }
+        console.log(results)
+        res.render('products',{products:results});
+    });
+})
+
+
 router.get('/login', (req, res) =>{
-    // if (req.session.isLoggedIn) {
-    //     res.redirect("/")
-    //     return;
-    // }
+    if (req.session.isLoggedIn) {
+        res.redirect("/")
+        return;
+    }
     res.render('login');
 })
 
 router.post('/login', (req, res) => {
-    // if (req.session.isLoggedIn) {
-    //     res.redirect("/")
-    //     return;
-    // }
+    if (req.session.isLoggedIn) {
+        res.redirect("/")
+        return;
+    }
     db.query('SELECT * FROM users WHERE email = \''+req.body.email+'\'  AND password = \''+req.body.password+'\'', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
             return;
         }
         if (results.length > 0) {
-            // req.session.isLoggedIn = true;
+            req.session.isLoggedIn = true;
             res.redirect('/');
         }
         else{
-            res.redirect('/auth/register');
+            res.redirect('/register');
         }
     });
 });
 
 router.get('/register', (req,res) => {
-    // if (req.session.isLoggedIn){
-    //     res.redirect("/");
-    //     return;
-    // }
+    if (req.session.isLoggedIn){
+        res.redirect("/");
+        return;
+    }
     res.render('register');
 })
 
 router.post('/register', (req, res) => {
+    if (req.session.isLoggedIn){
+        res.redirect("/");
+        return;
+    }
     db.query("SELECT * FROM users WHERE email = '"+req.body.email+"';", (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
             return;
         }
         if (results.length > 0) {
-            res.redirect('/auth/login');
+            res.redirect('/login');
         }
         else{
             db.query("INSERT INTO users (name,email,password) VALUES ('"+req.body.fullname+"','"+req.body.email+"','"+req.body.password+"');", (error, results, fields) => {
@@ -74,17 +108,25 @@ router.post('/register', (req, res) => {
                 console.error('Error executing query: ' + error);
                 return;
             }
-            res.redirect('/auth/login');
+            res.redirect('/login');
             });
         }
     });
 });
 
 router.get('/forgotPass', (req, res) => {
+    if (req.session.isLoggedIn){
+        res.redirect("/");
+        return;
+    }
     res.render('forgotPass')
 })
 
 router.post('/forgotPass', (req,res) => {
+    if (req.session.isLoggedIn){
+        res.redirect("/");
+        return;
+    }
     db.query('SELECT * FROM users WHERE email = \''+req.body.email+'\';', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
@@ -110,12 +152,16 @@ router.post('/forgotPass', (req,res) => {
             res.render('changePass',{email:email})
         }
         else{
-            res.redirect('/auth/register');
+            res.redirect('/register');
         }
     });
 })
 
 router.post('/changePass', (req, res) => {
+    if (req.session.isLoggedIn){
+        res.redirect("/");
+        return;
+    }
     otp = req.body.otp;
     console.log(otp);
     console.log('UPDATE users set password = \'' +req.body.newPassword+'\' WHERE otp = '+otp+' AND email = \''+req.body.email+'\';')
@@ -124,8 +170,15 @@ router.post('/changePass', (req, res) => {
             console.error('Error executing query: ' + error);
             return;
         }
-        res.redirect('/auth/login');
+        res.redirect('/login');
     });
+})
+
+router.post('/logout', (req, res) => {
+    if (req.session.isLoggedIn){
+        req.session.isLoggedIn = false;
+    }
+    res.redirect("/login");
 })
 
 module.exports = router;

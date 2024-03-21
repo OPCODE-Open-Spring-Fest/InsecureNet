@@ -8,9 +8,17 @@
 </head>
 <body>
     <header style="display: inline-block; width:100%;">
-        <h1 style="display: inline-block;">Products</h1><form action="/search" method="POST" style="display: inline-block; margin-left:20%" class="search-container">
-            <input name="name" type="text" id="searchInput" placeholder="Search by product name"> <button id="search" type="submit">Search</button>
+        <h1 style="display: inline-block;">Products</h1>
+        <form action="/search" method="POST" style="display: inline-block; margin-left:20%" class="search-container">
+            <input name="name" type="text" id="searchInput" placeholder="Search by product name">
+            <button id="search" type="submit">Search</button>
         </form>
+        
+        <% if (isLoggedIn) { %>
+            <form action="/logout" method="POST" style="display: inline-block;">
+                <button id="logout"   type="submit">Logout</button>
+            </form>
+        <% } %>
     </header>
 
     <div class="container">

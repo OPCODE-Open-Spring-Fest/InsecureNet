@@ -8,19 +8,19 @@
 </head>
 <body>
     <div class="login-container">
-        <form class="login-form" action="/auth/login" method="post" style="text-align: center;">
+        <form class="login-form" action="/login" method="post" style="text-align: center;">
             <h2>Login to Your Account</h2>
             <input type="text" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button style="margin-bottom: 5px;" type="submit">Login</button>
-            <a class="forgot-password" href="/auth/forgotPass">Forgot your password?</a>
+            <a class="forgot-password" href="/forgotPass">Forgot your password?</a>
             <hr>
             <button type="button" class="create-account" >Create New Account</button>
         </form>
     </div>
     <script>
         document.querySelector('.create-account').addEventListener('click', function() {
-            window.location.href = '/auth/register';
+            window.location.href = '/register';
         });
     </script>
 </body>
