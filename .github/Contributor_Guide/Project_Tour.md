@@ -1,12 +1,10 @@
 # Project Tour
 
-* notes:
-*  > Discuss about your project file structure
-*  > what each folder is responsible
-*  > then go through each file in folders and explain there purpose
-*  > if possible create a doc system ( there are autogen docs available for most of the languages )
-*  > decide coding style , linting style and formatting style and other themes like variable naming etc.
-*  > provide an example for existing function and tests system if possible 
-*  
+## FILE STRUCTURE:-
 
-# MAKE SURE PROJECT MANAGERS UPDATE THIS MD 
+*  > InsecureNet/app: It contains webapp and all its files
+*  > InsecureNet/app/db: It contains database connection
+*  > InsecureNet/app/public: It contains all the css styling files
+*  > InsecureNet/app/routes: It contains route.js contains all the webapp routes
+*  > InsecureNet/app/views: It contains all the ejs files which is basically (HTML + JS) in a single file
+*  > InsecureNet/app/main.js: This is the main file used to start the application

@@ -10,7 +10,7 @@ If you are new to InsecureNet, please take a look at the [documentation](./Proje
 
 ## New Contributor Guide
 
-To get an overview of the codebase, check out the '[README.md](../src/README.md)' file in the `src` directory.
+To get an overview of the codebase, check out the '[README.md](../../app/README.md)' file in the `app` directory.
 
 that will help you understand the structure of the project.
 
@@ -32,6 +32,11 @@ If you want to contribute to InsecureNet, submit a pull request.
   
 ### Requirements
 
+Node.Js
 
 ### Setup
 
+Step-1:- run "npm i" in the repository root directory (Insecure/)
+Step-2:- Go to app directory with `cd app`
+Step-3:- run "npm i" in the app directory(Insecure/app)
+Step-4:- run "npm run dev" to start the server on the localhost:4444
