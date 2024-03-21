@@ -38,7 +38,7 @@ router.get('/', (req,res)  => {
 })
 
 router.post('/search', (req, res) => {
-    if (req.session.isLoggedIn) {
+    if (!req.session.isLoggedIn) {
         res.redirect('/login');
         return;
     }
@@ -48,7 +48,7 @@ router.post('/search', (req, res) => {
             return;
         }
         console.log(results)
-        res.render('products',{products:results});
+        res.render('products',{products:results, isLoggedIn:req.session.isLoggedIn});
     });
 })
 
