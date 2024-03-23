@@ -31,6 +31,7 @@ router.get('/', (req,res)  => {
     db.query('SELECT * FROM products', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
+            res.send(error);
             return;
         }
         res.render('products',{products:results, isLoggedIn:req.session.isLoggedIn});
@@ -45,6 +46,7 @@ router.post('/search', (req, res) => {
     db.query('SELECT * FROM products WHERE name LIKE \'\%'+req.body.name+'\%\';', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
+            res.send(error);
             return;
         }
         console.log(results)
@@ -69,6 +71,7 @@ router.post('/login', (req, res) => {
     db.query('SELECT * FROM users WHERE email = \''+req.body.email+'\'  AND password = \''+req.body.password+'\'', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
+            res.send(error);
             return;
         }
         if (results.length > 0) {
@@ -97,6 +100,7 @@ router.post('/register', (req, res) => {
     db.query("SELECT * FROM users WHERE email = '"+req.body.email+"';", (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
+            res.send(error);
             return;
         }
         if (results.length > 0) {
@@ -130,6 +134,7 @@ router.post('/forgotPass', (req,res) => {
     db.query('SELECT * FROM users WHERE email = \''+req.body.email+'\';', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
+            res.send(error);
             return;
         }
         if (results.length > 0){
@@ -148,8 +153,14 @@ router.post('/forgotPass', (req,res) => {
                     console.log('Email sent:', info.response);
                 }
             });
-            db.execute('UPDATE users SET otp='+otp+' WHERE email=\''+email+'\';');
-            res.render('changePass',{email:email})
+            db.query('UPDATE users SET otp='+otp+' WHERE email=\''+email+'\';', (error, results, fields) => {
+                if (error) {
+                    console.error('Error executing query: ' + error);
+                    res.send(error);
+                    return;
+                }
+                res.render('changePass',{email:email})
+            });
         }
         else{
             res.redirect('/register');
@@ -164,10 +175,11 @@ router.post('/changePass', (req, res) => {
     }
     otp = req.body.otp;
     console.log(otp);
-    console.log('UPDATE users set password = \'' +req.body.newPassword+'\' WHERE otp = '+otp+' AND email = \''+req.body.email+'\';')
+    //console.log('UPDATE users set password = \'' +req.body.newPassword+'\' WHERE otp = '+otp+' AND email = \''+req.body.email+'\';')
     db.query('UPDATE users set password = \'' +req.body.newPassword+'\' WHERE email = \''+req.body.email+'\' AND otp = '+otp+';', (error, results, fields) => {
         if (error) {
             console.error('Error executing query: ' + error);
+            res.send(error);
             return;
         }
         res.redirect('/login');
