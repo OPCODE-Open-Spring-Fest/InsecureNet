@@ -1,91 +1,125 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
 header {
-    background-color: #2874f0;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+  background: #2874f0;
+  background: linear-gradient(to right, #2874f0, #20c997); /* Gradient */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
 }
 
 .card {
-    width: 300px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
-    width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .product-details {
-    padding: 10px;
+  padding: 20px;
 }
 
 .product-details h2 {
-    margin-top: 0;
-    font-size: 18px;
+  margin-top: 0;
+  font-size: 20px;
+  color: #333;
 }
 
 .product-details p {
-    margin: 5px 0;
+  margin: 10px 0;
+  color: #666;
+  font-size: 16px;
 }
 
 .product-details strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.company {
-    color: #666;
+/* Style the hover effect */
+.card:hover .product-image {
+  filter: brightness(90%); /* Reduce brightness on hover */
 }
 
-.price {
-    color: #333;
-    font-weight: bold;
+.card:hover .product-details {
+  background-color: #f9f9f9; /* Change background color on hover */
 }
 
-.featured, .shipping {
-    color: #2874f0;
+/* Add a border to the bottom of the card */
+.card:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
 }
 
-
+/* Style the search container */
 .search-container {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
+/* Style the search input */
 #searchInput {
-    width: 300px;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#search,#login,#logout{
-    width: 100px;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+  width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s ease;
 }
 
 #searchInput:focus {
-    outline: none;
-    border-color: #007bff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style search, login, and logout buttons */
+#search,
+#login,
+#logout {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  background-color: #2874f0;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#search:hover,
+#login:hover,
+#logout:hover {
+  background-color: #20c997;
 }

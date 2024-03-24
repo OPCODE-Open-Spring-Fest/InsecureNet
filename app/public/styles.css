@@ -1,104 +1,128 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
 }
 
 .login-container {
-    width: 400px;
-    margin: 100px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .login-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
+/* Form Inputs */
 .login-form input[type="text"],
 .login-form input[type="password"] {
-    width: 90%;
-    padding: 2.5% 5%;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease; /* Smooth transition for input focus */
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #1877f2; /* Change border color on focus */
 }
 
 .login-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #1877f2;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  background-color: #1877f2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for button hover */
+}
+
+.login-form button:hover {
+  background-color: #0e5aa7; /* Darker shade on button hover */
 }
 
 .forgot-password {
-    text-align: center;
+  text-align: center;
 }
 
 .create-account {
-    background-color: transparent;
-    color: #1877f2;
-    border: none;
-    cursor: pointer;
+  background-color: transparent;
+  color: #1877f2;
+  border: none;
+  cursor: pointer;
 }
 
-/* body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-} */
-
 .signup-container {
-    width: 400px;
-    margin: 100px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .signup-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .signup-form input[type="text"],
 .signup-form input[type="email"],
 .signup-form input[type="password"] {
-    width: 90%;
-    padding: 2.5% 5%;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease; /* Smooth transition for input focus */
+}
+
+.signup-form input[type="text"]:focus,
+.signup-form input[type="email"]:focus,
+.signup-form input[type="password"]:focus {
+  border-color: #1877f2; /* Change border color on focus */
 }
 
 .signup-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #1877f2;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  background-color: #1877f2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for button hover */
+}
+
+.signup-form button:hover {
+  background-color: #0e5aa7; /* Darker shade on button hover */
 }
 
 .login-link {
-    text-align: center;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .login-link a {
-    color: #1877f2;
-    text-decoration: none;
+  color: #1877f2;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition for link color change */
 }
 
 .login-link a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+  color: #0e5aa7; /* Darker shade on link hover */
 }
