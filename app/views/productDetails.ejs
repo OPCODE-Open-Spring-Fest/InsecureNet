@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=product.name%></title>
+</head>
+<style>
+    *{
+        margin: 0;
+    }
+    header{
+
+        height: 100px;
+        display: flex;
+        align-items: center;
+        background-color: blue;
+        color: whitesmoke;
+    }
+    header>h1{
+        text-align: center;
+        margin: auto;
+    }
+    .mainProductContainer{
+        display: flex;
+        row-gap: 10px;
+    }
+    .subContainer1{
+        flex: 50%;
+        margin:20px;
+        
+    }
+    .subContainer1>img{
+        height: 100%;
+        width: 100%;
+    }
+    .subContainer2{
+        margin: 20px;
+        flex:50%;
+    }
+    .colorVariantContainer{
+        display: flex;
+    }
+    .colorVariant{
+        margin: 2px;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+    }
+    .description{
+        margin-top: 20px;
+        width: 50%;
+    }
+    p{
+        margin:10px 0;
+        font-size: 1.1rem;
+    }
+    .productName{
+        color: rgb(4, 4, 82);
+    }
+    @media only screen and (max-width: 1025px) {
+
+        .mainProductContainer{
+            flex-direction: column;
+        }
+    }
+</style>
+<body>
+    <header>
+        <h1>InsecureNet</h1>
+    </header>
+    <div class="mainProductContainer">
+        <div class="subContainer1">
+            <img src=<%=product.image%>/>
+
+        </div>
+        <div class="subContainer2">
+            <h1 class="productName"><%=product.name%></h1>
+            <p><strong>Category : </strong><%=product.category%></p>
+            <p><strong>Company : </strong> <%=product.company %></p>
+            <p><strong>Price : </strong><%=product.price %> INR</p>
+            <div>
+                <h3>Available Colour Variants : </h3>
+                <div class="colorVariantContainer">
+                    <% product.colors.forEach(color=>{ %>
+                        <div class="colorVariant" style="background-color: <%= color%>;" ></div>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="description">
+                <p><%=product.description%></p>
+            </div>
+            <p style="color:#1877f2;"><strong>Featured: </strong><%=(product.featured==1)?"Yes":"No"%></p>
+            <p style="color:#1877f2;"><strong>Shipping: </strong><%=(product.shipping==1)?"Yes":"No"%></p>
+            <a href="/">Back To Home</a>
+        </div>
+    </div>
+</body>
+</html>

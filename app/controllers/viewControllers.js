@@ -41,6 +41,22 @@ const productListView = (req,res)=>{
     });
 }
 
+const productDetailsView=(req,res)=>{
+    if(!req.session.isLoggedIn){
+        res.redirect('/login');
+        return;
+    }
+    const { productId } = req.params
+    db.query(`SELECT * FROM products WHERE id="${productId}"`,(error,results,fields)=>{
+        if(error){
+            console.log('Error executing query: '+error);
+            res.send(error);
+            return;
+        }
+        res.render("productDetails",{product:results[0],isLoggedIn:req.session.isLoggedIn});
+    })
+}
+
 module.exports = {
-    loginView,signUpView,forgotPassView,productListView
+    loginView,signUpView,forgotPassView,productListView,productDetailsView
 }
