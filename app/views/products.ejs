@@ -23,25 +23,27 @@
 
     <div class="container">
         <% products.forEach(product => { %>
-            <div class="card">
-                <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
-                <div class="product-details">
-                    <h2><%= product.name %></h2>
-                    <p class="company"><strong>Company:</strong> <%= product.company %></p>
-                    <p class="price"><strong>Price:</strong> <%= product.price %></p>
-                    <p class="category"><strong>Category:</strong> <%= product.category %></p>
-                    <% if (product.featured) { %>
-                        <p class="featured"><strong>Featured:</strong> Yes</p>
-                    <% } else { %>
-                        <p class="featured"><strong>Featured:</strong> No</p>
-                    <% } %>
-                    <% if (product.shipping) { %>
-                        <p class="shipping"><strong>Shipping:</strong> Yes</p>
-                    <% } else { %>
-                        <p class="shipping"><strong>Shipping:</strong> No</p>
-                    <% } %>
+            <a href="/product/<%=product.id%>">
+                <div class="card">
+                    <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                    <div class="product-details">
+                        <h2><%= product.name %></h2>
+                        <p class="company"><strong>Company:</strong> <%= product.company %></p>
+                        <p class="price"><strong>Price:</strong> <%= product.price %></p>
+                        <p class="category"><strong>Category:</strong> <%= product.category %></p>
+                        <% if (product.featured) { %>
+                            <p class="featured"><strong>Featured:</strong> Yes</p>
+                        <% } else { %>
+                            <p class="featured"><strong>Featured:</strong> No</p>
+                        <% } %>
+                        <% if (product.shipping) { %>
+                            <p class="shipping"><strong>Shipping:</strong> Yes</p>
+                        <% } else { %>
+                            <p class="shipping"><strong>Shipping:</strong> No</p>
+                        <% } %>
+                    </div>
                 </div>
-            </div>
+            </a>
         <% }); %>
     </div>
 </body>

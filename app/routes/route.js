@@ -35,5 +35,6 @@ router.get('/forgotPass', viewController.forgotPassView)
 router.post('/forgotPass', loginController.forgotPass)
 router.post('/changePass', loginController.changePass)
 router.post('/logout', loginController.logout)
+router.get('/product/:productId',viewController.productDetailsView)
 
 module.exports = router;
